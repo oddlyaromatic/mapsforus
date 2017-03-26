@@ -64,7 +64,11 @@ window.onload = function () {
   }
 
   // only run this after Tabletop has loaded (onTabletopLoad())
+
+  // I hijacked this function in order to draw a table, based on the rule of
+  // "while you're in there" that I made up. - mn
   function mapPoints(points, layers) {
+  var gigsListBuffer = "<table><tr><th>Date</th><th>City</th><th>Venue</th><th>Ticket Link<th>More Info</th></tr>";
     var markerArray = [];
     // check that map has loaded before adding points to it?
     for (var i in points) {
@@ -77,7 +81,17 @@ window.onload = function () {
           marker.addTo(layers[point.Layer]);
         }
         markerArray.push(marker);
+
+        //adding some stuff below this to create a list of the things in the map.
+
+        var gigsList = document.getElementById('gigs-list');
+
+        gigsListBuffer += "<tr><td>" + point["Date"] + "</td><td>" + point["City"]
+        + "</td><td>" + point["Title"] + "</td><td><a href='" + point["Website"] + "'>Buy Tickets</a></td><td class='chevron'><i class='fa fa-chevron-down' aria-hidden='true'></i></td></tr>";
+
+
       }
+      gigsList.innerHTML = gigsListBuffer + "</table>";
     }
 
     var group = L.featureGroup(markerArray);
@@ -126,6 +140,7 @@ window.onload = function () {
     addBaseMap();
     document.title = documentSettings["Webpage Title:"];
     var points = tabletop.sheets(constants.pointsSheetName).elements;
+    console.log(points);
     var layers = determineLayers(points);
     mapPoints(points, layers);
   }
@@ -154,7 +169,7 @@ window.onload = function () {
 
     var attributionHTML = document.getElementsByClassName("leaflet-control-attribution")[0].innerHTML;
     var mapCreatorAttribution = documentSettings["Your Name:"] === '' ? 'Built with' : 'This map was built by ' + documentSettings["Your Name:"] + ' using';
-    attributionHTML = mapCreatorAttribution + ' <a href="http://mapsfor.us/">mapsfor.us</a><br><a href="http://mapsfor.us/">Mapsfor.us</a> was created by <a href="http://www.codeforatlanta.org/">Code for Atlanta</a><br>' + attributionHTML;
+    attributionHTML = mapCreatorAttribution + ' <a href="http://mapsfor.us/">mapsfor.us</a>.   <a href="http://mapsfor.us/">Mapsfor.us</a> was created by <a href="http://www.codeforatlanta.org/">Code for Atlanta</a><br>' + attributionHTML;
     document.getElementsByClassName("leaflet-control-attribution")[0].innerHTML = attributionHTML;
   }
 };
