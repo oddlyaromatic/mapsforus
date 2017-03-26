@@ -1,5 +1,5 @@
 var constants = {
-	googleDocID: '1I1bHQTUNCPHD6AuyNQfYV6g0qqJI8OjF9UHP9MW4XYg',
+	googleDocID: '1tiFjazEMHiOmfdt8ncIMaQX0yyWtR3FOhdPv9XXNPlA',
 	informationSheetName: 'Information',
 	pointsSheetName: 'Points'
 };
