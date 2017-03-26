@@ -33,8 +33,13 @@ window.onload = function () {
     map.setView(mapCenter, mapZoom);
 
     // once map is recentered, open popup in center of map
+<<<<<<< HEAD
     if (documentSettings["Fun Extra Thing:"] !== '') {
       initInfoPopup(documentSettings["Fun Extra Thing:"], mapCenter);
+=======
+    if (documentSettings["Info Popup Text:"] !== '') {
+      initInfoPopup(documentSettings["Info Popup Text:"], mapCenter);
+>>>>>>> parent of 2180c01... Change popup info
     };
   }
 
@@ -131,7 +136,7 @@ window.onload = function () {
   }
 
   var tabletop = Tabletop.init( { key: constants.googleDocID, // from constants.js
-    callback: function(data, tabletop) { onTabletopLoad() }
+    callback: function(data, tabletop) { onTabletopLoad() } 
   });
 
   function initInfoPopup(info, coordinates) {
@@ -140,7 +145,7 @@ window.onload = function () {
       .setContent(info)
       .openOn(map);
   }
-
+  
   function addBaseMap() {
     var basemap = documentSettings["Tile Provider:"] === '' ? 'Stamen.TonerLite' : documentSettings["Tile Provider:"];
 
