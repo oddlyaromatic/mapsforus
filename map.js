@@ -33,7 +33,7 @@ window.onload = function () {
     map.setView(mapCenter, mapZoom);
 
     // once map is recentered, open popup in center of map
-    if (documentSettings["Info Popup Text:"] !== '') {
+    if (documentSettings["Fun Extra Thing:"] !== '') {
       initInfoPopup(documentSettings["Fun Extra Thing:"], mapCenter);
     };
   }
