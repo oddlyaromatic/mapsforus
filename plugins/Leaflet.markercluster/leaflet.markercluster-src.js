@@ -10,7 +10,7 @@
 L.MarkerClusterGroup = L.FeatureGroup.extend({
 
 	options: {
-		maxClusterRadius: 80, //A cluster will cover at most this many pixels from its center
+		maxClusterRadius: 40, //A cluster will cover at most this many pixels from its center
 		iconCreateFunction: null,
 
 		spiderfyOnMaxZoom: true,
@@ -739,7 +739,7 @@ L.MarkerClusterGroup = L.FeatureGroup.extend({
 		var maxZoom = this._map.getMaxZoom(),
 			radius = this.options.maxClusterRadius,
 			radiusFn = radius;
-	
+
 		//If we just set maxClusterRadius to a single number, we need to create
 		//a simple function to return that number. Otherwise, we just have to
 		//use the function we've passed in.
@@ -753,7 +753,7 @@ L.MarkerClusterGroup = L.FeatureGroup.extend({
 		this._maxZoom = maxZoom;
 		this._gridClusters = {};
 		this._gridUnclustered = {};
-	
+
 		//Set up DistanceGrids for each zoom
 		for (var zoom = maxZoom; zoom >= 0; zoom--) {
 			this._gridClusters[zoom] = new L.DistanceGrid(radiusFn(zoom));
@@ -1901,7 +1901,7 @@ L.MarkerCluster.include(!L.DomUtil.TRANSITION ? {
 			if (m.setOpacity) {
 				m.setZIndexOffset(1000000); //Make these appear on top of EVERYTHING
 				m.setOpacity(0);
-			
+
 				fg.addLayer(m);
 
 				m._setPos(thisLayerPos);
@@ -1925,7 +1925,7 @@ L.MarkerCluster.include(!L.DomUtil.TRANSITION ? {
 			//Move marker to new position
 			m._preSpiderfyLatlng = m._latlng;
 			m.setLatLng(newPos);
-			
+
 			if (m.setOpacity) {
 				m.setOpacity(1);
 			}

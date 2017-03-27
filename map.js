@@ -68,7 +68,10 @@ window.onload = function () {
   // I hijacked this function in order to draw a table, based on the rule of
   // "while you're in there" that I made up. - mn
   function mapPoints(points, layers) {
-  var gigsListBuffer = "<table><tr><th>Date</th><th>City</th><th>Venue</th><th>Ticket Link<th>More Info</th></tr>";
+  var gigsListBuffer = "<table>";
+  var gigsList = document.getElementById('gigs-list');
+  var date;
+
     var markerArray = [];
     // check that map has loaded before adding points to it?
     for (var i in points) {
@@ -84,10 +87,12 @@ window.onload = function () {
 
         //adding some stuff below this to create a list of the things in the map.
 
-        var gigsList = document.getElementById('gigs-list');
+        date = new Date(point["Date"]);
+        date = date.toDateString();
+        console.log(date);
 
-        gigsListBuffer += "<tr><td>" + point["Date"] + "</td><td>" + point["City"]
-        + "</td><td>" + point["Title"] + "</td><td><a href='" + point["Website"] + "'>Buy Tickets</a></td><td class='chevron'><i class='fa fa-chevron-down' aria-hidden='true'></i></td></tr>";
+        gigsListBuffer += "<tr><td>" + date + "</td><td>" + point["City"]
+        + "</td><td>" + point["Title"] + "</td><td><a href='" + point["Website"] + "'>Buy Tickets</a></td><td class='chevron'><i class='fa fa-info-circle' aria-hidden='true'></i></td></tr>";
 
 
       }
@@ -125,7 +130,7 @@ window.onload = function () {
         var cluster = L.markerClusterGroup({
             polygonOptions: {
                 opacity: 0.3,
-                weight: 3
+                weight: 1
             }
         });
         cluster.addLayer(group);
