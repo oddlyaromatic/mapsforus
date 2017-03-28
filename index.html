@@ -49,22 +49,23 @@
         }
 
         #gigs-list {
-            width: 600px;
+            max-width: 600px;
             min-height: 40px;
             margin-top: 15px;
         }
 
 
         .city-and-venue {
-          max-width: 200px;
+    
         }
         .date-container {
           padding: 5px 15px 2px 15px;
-          border: 1px solid #888;
+          border: 0px solid #888;
           text-align: center;
           font-weight: bold;
           display: inline-block;
           float:left;
+          margin-left: 20px
         }
 
         .date-container .date-number {
@@ -74,7 +75,6 @@
         .gig-listing {
           min-height: 80px;
           height: auto;
-          width: 100%;
           font-size: 16px;
         }
 
@@ -82,17 +82,26 @@
           content:"";
           display:block;
           clear:both;
-        } 
+        }
 
         .gig-details-container {
-          padding-left: 12px;
+          padding-left: 2px;
           float: left;
           text-align: left;
           vertical-align: text-bottom;
-          line-height: 20px;
-          min-width: 300px;
-        }
+          line-height: 25px;
+          min-width: 200px;
+                 }
 
+        .year {
+          transform:rotate(270deg) translate(-22px, -10px);
+          display: block;
+          position: absolute;
+          font-size: 28px;
+          float: left;
+          color: #939393;
+
+        }
         .intro-popup .leaflet-popup-tip-container {
             width: 0;
             height: 0;
@@ -128,6 +137,7 @@
             display: inline-block;
             float:right;
             margin-top: 10px;
+            margin-right: 10px;
         }
 
         tr:nth-child(even) {

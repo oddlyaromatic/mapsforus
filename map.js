@@ -89,13 +89,13 @@ window.onload = function () {
 
         date = new Date(point["Date"]);
         date = date.toDateString();
+        year = date.substring(date.length - 4);
         date = date.substring(0, date.length - 5);
 
         var markUpDate = "<div class='date-container'>" + date.slice(0,3) + "<br>" + date.slice(3,7).toUpperCase() + "<br><span class='date-number'>" + date.slice(8,10) + "</span></div>";
 
-        console.log(date);
 
-        gigsListBuffer += "<div class='gig-listing'>" + markUpDate + "<div class='gig-details-container'>" + "<div class='buy-tickets'><a href='" + point["Website"] + "'>Buy Tickets</a></div><div class='city-and-venue'><b>" + point["City"] + "</b><br>" + point["Title"] + "<br><i class='fa fa-info-circle' aria-hidden='true'></i> More Info</div></div></div><hr>";
+        gigsListBuffer += "<div class='gig-listing'>" + "<div class='year'>" + year + "</div>" + markUpDate + "<div class='gig-details-container'>" + "<div class='city-and-venue'><b>" + point["City"] + "</b><br>" + point["Title"] + "</div></div><div class='buy-tickets'><a href='" + point["Website"] + "'>Buy Tickets</a></div></div><hr>";
 
 
       }
