@@ -39,7 +39,7 @@
             margin: 0 auto;
             height: 100%;
             width: 100%;
-            font-family: "Hevetica", sans-serif;
+            font-family: "Helvetica", sans-serif;
             font-size: 14px;
         }
 
@@ -49,9 +49,48 @@
         }
 
         #gigs-list {
-            width: 100%;
+            width: 600px;
             min-height: 40px;
             margin-top: 15px;
+        }
+
+
+        .city-and-venue {
+          max-width: 200px;
+        }
+        .date-container {
+          padding: 5px 15px 2px 15px;
+          border: 1px solid #888;
+          text-align: center;
+          font-weight: bold;
+          display: inline-block;
+          float:left;
+        }
+
+        .date-container .date-number {
+          font-size: 30px;
+        }
+
+        .gig-listing {
+          min-height: 80px;
+          height: auto;
+          width: 100%;
+          font-size: 16px;
+        }
+
+        .gig-listing::after {
+          content:"";
+          display:block;
+          clear:both;
+        } 
+
+        .gig-details-container {
+          padding-left: 12px;
+          float: left;
+          text-align: left;
+          vertical-align: text-bottom;
+          line-height: 20px;
+          min-width: 300px;
         }
 
         .intro-popup .leaflet-popup-tip-container {
@@ -60,12 +99,11 @@
         }
 
         td {
-            margin: -1px;
+          padding: 4px;
+          margin: -1px;
+          vertical-align: middle;
         }
 
-        td {
-          padding: 4px;
-        }
 
         table {
             border-spacing: 0;
@@ -74,14 +112,22 @@
             /* Optional - if you don't want to have double border where cells touch */
         }
 
-        td.chevron {
+        .chevron {
             width: 20px;
             text-align: center;
         }
 
         a {
-            text-decoration: none;
+          text-decoration: none;
+          color: #239583;
+        }
+        .buy-tickets {
             font-weight: bold;
+            border: 1px solid #555;
+            padding: 10px;
+            display: inline-block;
+            float:right;
+            margin-top: 10px;
         }
 
         tr:nth-child(even) {

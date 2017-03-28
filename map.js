@@ -65,10 +65,10 @@ window.onload = function () {
 
   // only run this after Tabletop has loaded (onTabletopLoad())
 
-  // I hijacked this function in order to draw a table, based on the rule of
+  // I hijacked this function in order to draw a list of gigs, based on the rule of
   // "while you're in there" that I made up. - mn
   function mapPoints(points, layers) {
-  var gigsListBuffer = "<table>";
+  var gigsListBuffer = "<hr>";
   var gigsList = document.getElementById('gigs-list');
   var date;
 
@@ -89,14 +89,17 @@ window.onload = function () {
 
         date = new Date(point["Date"]);
         date = date.toDateString();
+        date = date.substring(0, date.length - 5);
+
+        var markUpDate = "<div class='date-container'>" + date.slice(0,3) + "<br>" + date.slice(3,7).toUpperCase() + "<br><span class='date-number'>" + date.slice(8,10) + "</span></div>";
+
         console.log(date);
 
-        gigsListBuffer += "<tr><td>" + date + "</td><td>" + point["City"]
-        + "</td><td>" + point["Title"] + "</td><td><a href='" + point["Website"] + "'>Buy Tickets</a></td><td class='chevron'><i class='fa fa-info-circle' aria-hidden='true'></i></td></tr>";
+        gigsListBuffer += "<div class='gig-listing'>" + markUpDate + "<div class='gig-details-container'>" + "<div class='buy-tickets'><a href='" + point["Website"] + "'>Buy Tickets</a></div><div class='city-and-venue'><b>" + point["City"] + "</b><br>" + point["Title"] + "<br><i class='fa fa-info-circle' aria-hidden='true'></i> More Info</div></div></div><hr>";
 
 
       }
-      gigsList.innerHTML = gigsListBuffer + "</table>";
+      gigsList.innerHTML = gigsListBuffer + "</div>";
     }
 
     var group = L.featureGroup(markerArray);
