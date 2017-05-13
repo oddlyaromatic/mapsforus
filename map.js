@@ -64,14 +64,7 @@ window.onload = function () {
   }
 
   // only run this after Tabletop has loaded (onTabletopLoad())
-
-  // I hijacked this function in order to draw a list of gigs, based on the rule of
-  // "while you're in there" that I made up. - mn
   function mapPoints(points, layers) {
-  var gigsListBuffer = "<hr>";
-  var gigsList = document.getElementById('gigs-list');
-  var date;
-
     var markerArray = [];
     // check that map has loaded before adding points to it?
     for (var i in points) {
@@ -84,22 +77,7 @@ window.onload = function () {
           marker.addTo(layers[point.Layer]);
         }
         markerArray.push(marker);
-
-        //adding some stuff below this to create a list of the things in the map.
-
-        date = new Date(point["Date"]);
-        date = date.toDateString();
-        year = date.substring(date.length - 4);
-        date = date.substring(0, date.length - 5);
-
-        var markUpDate = "<div class='date-container'>" + date.slice(0,3) + "<br>" + date.slice(3,7).toUpperCase() + "<br><span class='date-number'>" + date.slice(8,10) + "</span></div>";
-
-
-        gigsListBuffer += "<div class='gig-listing'>" + "<div class='year'>" + year + "</div>" + markUpDate + "<div class='gig-details-container'>" + "<div class='city-and-venue'><b>" + point["City"] + "</b><br>" + point["Title"] + "</div></div><div class='buy-tickets'><a href='" + point["Website"] + "'>Buy Tickets</a></div></div><hr>";
-
-
       }
-      gigsList.innerHTML = gigsListBuffer + "</div>";
     }
 
     var group = L.featureGroup(markerArray);
@@ -133,7 +111,7 @@ window.onload = function () {
         var cluster = L.markerClusterGroup({
             polygonOptions: {
                 opacity: 0.3,
-                weight: 1
+                weight: 3
             }
         });
         cluster.addLayer(group);
@@ -148,7 +126,6 @@ window.onload = function () {
     addBaseMap();
     document.title = documentSettings["Webpage Title:"];
     var points = tabletop.sheets(constants.pointsSheetName).elements;
-    console.log(points);
     var layers = determineLayers(points);
     mapPoints(points, layers);
   }
@@ -177,7 +154,7 @@ window.onload = function () {
 
     var attributionHTML = document.getElementsByClassName("leaflet-control-attribution")[0].innerHTML;
     var mapCreatorAttribution = documentSettings["Your Name:"] === '' ? 'Built with' : 'This map was built by ' + documentSettings["Your Name:"] + ' using';
-    attributionHTML = mapCreatorAttribution + ' <a href="http://mapsfor.us/">mapsfor.us</a>.   <a href="http://mapsfor.us/">Mapsfor.us</a> was created by <a href="http://www.codeforatlanta.org/">Code for Atlanta</a><br>' + attributionHTML;
+    attributionHTML = mapCreatorAttribution + ' <a href="http://mapsfor.us/">mapsfor.us</a><br><a href="http://mapsfor.us/">Mapsfor.us</a> was created by <a href="http://www.codeforatlanta.org/">Code for Atlanta</a><br>' + attributionHTML;
     document.getElementsByClassName("leaflet-control-attribution")[0].innerHTML = attributionHTML;
   }
 };
