@@ -71,7 +71,7 @@ window.onload = function () {
       var point = points[i];
       if (point.Latitude !== "" && point.Longitude !== "") {
         var marker = L.marker([point.Latitude, point.Longitude], {
-          icon: createMarkerIcon(point['Marker Icon'], 'fa', point['Marker Color'].toLowerCase(), point['Marker Icon Color'])
+          //icon: createMarkerIcon(point['Marker Icon'], 'fa', point['Marker Color'].toLowerCase(), point['Marker Icon Color'])
         }).bindPopup("<b>" + point["Title"] + "</b><br>" + point["Description"]);
         if (layers !== undefined && layers.length !== 1) {
           marker.addTo(layers[point.Layer]);
@@ -122,6 +122,7 @@ window.onload = function () {
   }
 
   function onTabletopLoad() {
+    console.log(tabletop.sheets(constants.pointsSheetName));
     createDocumentSettings(tabletop.sheets(constants.informationSheetName).elements);
     addBaseMap();
     document.title = documentSettings["Webpage Title:"];
@@ -154,7 +155,7 @@ window.onload = function () {
 
     var attributionHTML = document.getElementsByClassName("leaflet-control-attribution")[0].innerHTML;
     var mapCreatorAttribution = documentSettings["Your Name:"] === '' ? 'Built with' : 'This map was built by ' + documentSettings["Your Name:"] + ' using';
-    attributionHTML = mapCreatorAttribution + ' <a href="http://mapsfor.us/">mapsfor.us</a><br><a href="http://mapsfor.us/">Mapsfor.us</a> was created by <a href="http://www.codeforatlanta.org/">Code for Atlanta</a><br>' + attributionHTML;
+    attributionHTML = mapCreatorAttribution + ' <a href="http://mapsfor.us/">mapsfor.us</a>. <a href="http://mapsfor.us/">Mapsfor.us</a> was created by <a href="http://www.codeforatlanta.org/">Code for Atlanta</a>. ' + attributionHTML;
     document.getElementsByClassName("leaflet-control-attribution")[0].innerHTML = attributionHTML;
   }
 };
